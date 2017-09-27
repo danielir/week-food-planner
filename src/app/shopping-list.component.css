@@ -1,4 +1,5 @@
 input[type=text], select {
+    width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -14,6 +15,14 @@ input[type=text], select {
     font-size: 18px;
     width: 90%;
     padding: 5px 20px;
+}
+
+md-grid-tile {
+    background: lightblue;
+}
+
+.product {
+    color: #066094;
 }
 
 

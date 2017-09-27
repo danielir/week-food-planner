@@ -1,0 +1,9 @@
+<h1>Daniel's week</h1>
+Servings: <input type="text" [(ngModel)]="servings">
+<md-tab-group class="recipes" (selectChange)="onLinkClick($event)">
+  <md-tab *ngFor="let day of weekDays; let i = index" label="{{day}}">
+    <br>
+    <div class="recipe" *ngFor="let recipe of weekRecipes[i]">{{recipe.name}} ({{recipe.servings}}p)</div>  
+    <hr>    
+  </md-tab>
+</md-tab-group>

@@ -1,0 +1,5 @@
+<div class="recipes">
+  <input type="text" #searchTerm placeholder="Escribe aquí la receta que buscas" (keyup)="search(searchTerm.value)">
+  <div *ngFor="let recipe of recipes | async" (click)="selectRecipe(recipe);searchTerm.value=''">{{recipe.name}}</div>
+</div>
+

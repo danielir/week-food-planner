@@ -1,0 +1,27 @@
+<button class="recipes" (click)="requestShoppingList()">Obtener lista de ingredientes</button>
+<div *ngIf="shoppingListItems">
+    <div *ngFor="let item of shoppingListItems">
+      <span *ngIf="item.ingredient">{{item.ingredient.quantity}} {{item.ingredient.unit}} {{item.ingredient.item}}</span>      
+      <span class="product" *ngIf="item.product.desc != ''" (click)="unassignProduct(item)">
+        {{item.product.desc}} 
+      </span>      
+    </div>    
+</div>
+<button (click)="requestMappings()">obtener mappings</button>
+<div *ngIf="mappingsRequested && unmappedIngredients.length>0">
+  <h4>Tenemos que saber qué productos quieres para estos ingredientes:</h4>  
+  <select id="unrelatedIngredient" #unrelatedIngredient>
+    <option *ngFor="let item of unmappedIngredients" value="{{item.ingredient.item}}">{{item.ingredient.item}}</option>  
+  </select>
+      
+  <input type="text" #term placeholder="cómo buscamos el ingrediente?">
+  <button (click)="searchProducts(unrelatedIngredient,term.value);term.value='';">Buscar</button>
+  <div *ngIf="ingredientOfProductSearch"><h4>Resultados para {{ingredientOfProductSearch}} a partir de {{termOfProductSearch}}:</h4></div>
+  <div *ngFor="let product of productsFoundInSearch" (click)="assignProduct(product.desc);term.value=''">{{product.desc}}</div>
+</div>
+<div *ngIf="mappingsRequested && unmappedIngredients==0"><h3>Enhorabuena! Estamos listos para comprar</h3></div>
+
+
+  
+
+
