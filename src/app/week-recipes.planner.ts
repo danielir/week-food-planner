@@ -4,6 +4,8 @@ import { Recipe } from './recipe';
 import { RecipeSearchComponent } from './recipe-search.component'
 import { ShoppingListComponent } from './shopping-list.component';
 import { Router, ActivatedRoute } from '@angular/router'
+import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { WeekRecipesDetail } from './week-recipes-detail'
 
 
 @Component({
@@ -19,6 +21,8 @@ export class WeekRecipesPlanner implements OnInit {
   weekDays : string[] = ["lunes","martes","miercoles","jueves","viernes"];  
   servings = 2;
   
+  constructor(public dialog: MdDialog) {}
+
   ngOnInit(): void {
     this.weekRecipes[0]=[];
     this.weekRecipes[1]=[];
@@ -37,4 +41,18 @@ export class WeekRecipesPlanner implements OnInit {
     console.log(JSON.stringify(this.weekRecipes));
   }
 
+  openDialog(recipe: Recipe): void {
+    let dialogRef = this.dialog.open(WeekRecipesDetail, {
+      width: '250px',
+      data: { recipe: recipe }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');      
+    });
+  
+  }
+
 }
+
+
