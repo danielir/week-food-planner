@@ -13,12 +13,18 @@ import { ShoppingListComponent } from './shopping-list.component';
 export class AppComponent {
 
   @ViewChild('planner') weekPlanner;
+  @ViewChild('shoppingList') shoppingListComponent;
 
-  title = 'Week Food Planner App';
-  private weekRecipes : Map<number,Recipe[]> = new Map<number,Recipe[]>(); 
+
+  title = 'Week Food Planner App';  
 
   addRecipeToSelectedDay(recipe:Recipe) {
-    this.weekPlanner.addRecipeToSelectedDay(recipe);
+    this.weekPlanner.addRecipeToSelectedDay(recipe);    
+  }
+
+  requestShoppingList() {
+    let recipes : Map<number,Recipe[]> = this.weekPlanner.getWeekRecipes();
+    this.shoppingListComponent.requestShoppingList(recipes);
   }
   
 }

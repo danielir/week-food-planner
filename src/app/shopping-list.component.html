@@ -1,4 +1,3 @@
-<button class="recipes" (click)="requestShoppingList()">Obtener lista de ingredientes</button>
 <div *ngIf="shoppingListItems">
     <div *ngFor="let item of shoppingListItems">
       <span *ngIf="item.ingredient">{{item.ingredient.quantity}} {{item.ingredient.unit}} {{item.ingredient.item}}</span>      

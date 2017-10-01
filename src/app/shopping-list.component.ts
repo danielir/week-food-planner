@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { ShoppingListService } from './shopping-list.service';
 import { ScrapperSearchService } from './scrapper-search.service';
 import { Recipe } from './recipe';
@@ -15,9 +15,6 @@ import { Product } from './product';
 })
 export class ShoppingListComponent implements OnInit {
 
-  @Input()
-  private recipes : Map<number,Recipe[]>;  
-  
   private shoppingListItems: ShoppingListItem[] = []; 
   private unmappedIngredients: ShoppingListItem[] = [];
   private title:string = "Hola";
@@ -31,10 +28,11 @@ export class ShoppingListComponent implements OnInit {
     this.unmappedIngredients = [];
   }
 
-  requestShoppingList() {
+  requestShoppingList(recipes : Map<number,Recipe[]>) {
+    console.log("recipes monday: "+recipes[0]);
     this.shoppingListItems = [];
     this.unmappedIngredients = [];
-    this.shoppingListService.getIngredientsOfWeekRecipes(this.recipes).then((res) => {for (let ing of res) { 
+    this.shoppingListService.getIngredientsOfWeekRecipes(recipes).then((res) => {for (let ing of res) { 
       this.shoppingListItems.push({'ingredient':ing, 'product': {'desc':''}});
       this.unmappedIngredients.push({'ingredient':ing, 'product': {'desc':''}});
     }

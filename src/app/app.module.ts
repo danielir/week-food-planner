@@ -27,7 +27,7 @@ import { WeekRecipesDetail } from './week-recipes-detail';
     AlertModule.forRoot(),
     routing,
     FormsModule ,
-    MaterialModule   
+    MaterialModule    
   ],
   entryComponents: [
     WeekRecipesDetail

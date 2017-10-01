@@ -36,22 +36,44 @@ export class WeekRecipesPlanner implements OnInit {
     this.weekRecipes[this.selectedDay].push(r);    
   }
 
+  getWeekRecipes():Map<number,Recipe[]> {
+    return this.weekRecipes;
+  }
+
   onLinkClick($event: any) {
     this.selectedDay = $event.index;
     console.log(JSON.stringify(this.weekRecipes));
   }
 
-  openDialog(recipe: Recipe): void {
+  openDialog(recipe: Recipe, selectedDay: number, recipeIndex: number): void {
+    
     let dialogRef = this.dialog.open(WeekRecipesDetail, {
-      width: '250px',
-      data: { recipe: recipe }
+      width: '500px',
+      data: { weekDays: this.weekDays, recipe: recipe, selectedDay: selectedDay, recipeIndex: recipeIndex }
+    });
+
+    const removed = dialogRef.componentInstance.removed.subscribe((data) => {
+      if (this.weekRecipes[data.selectedDay][data.recipeIndex].name==data.recipe.name) {
+        this.weekRecipes[data.selectedDay].splice(data.recipeIndex, 1);
+        dialogRef.close();
+      }
+    });
+
+    const moved = dialogRef.componentInstance.moved.subscribe((data) => {
+      if (this.weekRecipes[data.selectedDay][data.recipeIndex].name==data.recipe.name) {
+        this.weekRecipes[data.selectedDay].splice(data.recipeIndex, 1);
+        dialogRef.close();
+      }
+      this.weekRecipes[data.destinationDay].push(data.recipe);
+
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');      
+      console.log('The dialog was closed');
+      removed.unsubscribe();
     });
   
-  }
+  } 
 
 }
 

@@ -44,6 +44,7 @@ export class RecipeSearchComponent implements OnInit {
   
   // push search term into the observable stream
   search(searchTerm:string): void {
+    console.log("search "+searchTerm);
     this.searchTerms.next(searchTerm);
   }
 
