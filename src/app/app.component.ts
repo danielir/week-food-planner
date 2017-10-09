@@ -16,7 +16,7 @@ export class AppComponent {
   @ViewChild('shoppingList') shoppingListComponent;
 
 
-  title = 'Week Food Planner App';  
+  title = 'Week Food Planner';  
 
   addRecipeToSelectedDay(recipe:Recipe) {
     this.weekPlanner.addRecipeToSelectedDay(recipe);    
@@ -25,6 +25,15 @@ export class AppComponent {
   requestShoppingList() {
     let recipes : Map<number,Recipe[]> = this.weekPlanner.getWeekRecipes();
     this.shoppingListComponent.requestShoppingList(recipes);
+  }
+
+  requestMappings(mappingName:string) {
+    console.log("mappingName:"+mappingName);
+    this.shoppingListComponent.requestMappings(mappingName);
+  }
+
+  createMercadonaShoppingList() {
+    this.shoppingListComponent.createShoppingListInMercadona();
   }
   
 }

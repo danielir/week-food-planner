@@ -1,5 +1,6 @@
-<h1>Daniel's week</h1>
-Servings: <input type="text" [(ngModel)]="servings">
+Servings: <input type="number" [(ngModel)]="servings">
+<input type="text" #weekName name="weekName" placeholder="name of the week">
+<button (click)="storeWeek(weekName.value)">store week</button>
 <md-tab-group class="recipes" (selectChange)="onLinkClick($event)">
   <md-tab *ngFor="let day of weekDays; let i = index" label="{{day}}">
     <br>

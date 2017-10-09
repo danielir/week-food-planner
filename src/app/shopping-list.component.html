@@ -1,12 +1,15 @@
 <div *ngIf="shoppingListItems">
     <div *ngFor="let item of shoppingListItems">
+      <span (click)="removeShoppingListItem(item)">[Remove]</span>
       <span *ngIf="item.ingredient">{{item.ingredient.quantity}} {{item.ingredient.unit}} {{item.ingredient.item}}</span>      
-      <span class="product" *ngIf="item.product.desc != ''" (click)="unassignProduct(item)">
-        {{item.product.desc}} 
-      </span>      
+      <div *ngIf="item.product.desc != ''">
+        <span class="product"  (click)="unassignProduct(item)">
+          {{item.product.productName}} 
+        </span>
+        <input type="number" value="{{item.product.quantity}}" [(ngModel)]="item.product.quantity">
+      </div>            
     </div>    
 </div>
-<button (click)="requestMappings()">obtener mappings</button>
 <div *ngIf="mappingsRequested && unmappedIngredients.length>0">
   <h4>Tenemos que saber qué productos quieres para estos ingredientes:</h4>  
   <select id="unrelatedIngredient" #unrelatedIngredient>

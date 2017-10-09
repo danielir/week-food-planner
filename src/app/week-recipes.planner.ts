@@ -6,6 +6,7 @@ import { ShoppingListComponent } from './shopping-list.component';
 import { Router, ActivatedRoute } from '@angular/router'
 import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import { WeekRecipesDetail } from './week-recipes-detail'
+import { PlanningsService } from './plannings.service'
 
 
 @Component({
@@ -15,13 +16,12 @@ import { WeekRecipesDetail } from './week-recipes-detail'
 })
 export class WeekRecipesPlanner implements OnInit {
 
-  title = 'Week Food Planner App';
   private weekRecipes : Map<number,Recipe[]> = new Map<number,Recipe[]>();
   selectedDay = 0; //monday
   weekDays : string[] = ["lunes","martes","miercoles","jueves","viernes"];  
   servings = 2;
   
-  constructor(public dialog: MdDialog) {}
+  constructor(public dialog: MdDialog, private planningService: PlanningsService) {}
 
   ngOnInit(): void {
     this.weekRecipes[0]=[];
@@ -43,6 +43,20 @@ export class WeekRecipesPlanner implements OnInit {
   onLinkClick($event: any) {
     this.selectedDay = $event.index;
     console.log(JSON.stringify(this.weekRecipes));
+  }
+
+  storeWeek(weekName:string) {
+    console.log("save week: "+JSON.stringify(this.weekRecipes));
+    this.planningService.storeWeekPlanning(weekName, this.weekRecipes).then(response => 
+      {
+        if (response["n"]==1 && response["ok"]=="1") {
+          console.log("modificado correctamente");
+        }
+        if (response["nModified"]==0) {
+          console.log("no ha introducido ningun cambio");
+        }
+      }
+    );
   }
 
   openDialog(recipe: Recipe, selectedDay: number, recipeIndex: number): void {

@@ -17,6 +17,7 @@ export class ShoppingListService {
     private shoppingListBackendUrl = 'http://localhost:5000/recipes/shopping-list/'; 
     private headers = new Headers({'Content-Type': 'application/json'});
     private mappingUrl = 'http://localhost:5002/mappings/'; 
+    private shoppingCartUrl = "http://localhost:5004/scrapper/mercadona/shoppingcart"
     
 
     constructor(private http: Http) {}
@@ -42,9 +43,9 @@ export class ShoppingListService {
         return Promise.reject(error.message || error);
     }
 
-    requestProductForIngredient(ingredient: Ingredient) : Promise<string>{
+    requestProductForIngredient(mappingName: string, ingredient: Ingredient) : Promise<string>{
         console.log("querying for "+ingredient.item);
-        let url:string = this.mappingUrl+"?ingredient="+ingredient.item;
+        let url:string = this.mappingUrl+"?ingredient="+ingredient.item+"&mapping="+mappingName;
         return this.http
         .get(url)
         .toPromise()
@@ -59,6 +60,21 @@ export class ShoppingListService {
         .put(url, mapping, {headers: this.headers})
         .toPromise()
         .then(response => console.log(response.json()));        
+    }
+
+    createShoppingCart(products:Product[]): Promise<string> {
+        this.headers.append('Access-Control-Allow-Origin','*');        
+        let url:string = this.shoppingCartUrl;
+        console.log("sending products: "+JSON.stringify(products));
+        return this.http
+            .post(url, JSON.stringify(products), {headers: this.headers})
+            .toPromise()
+            .then(function(res) {
+                let aux = res.json();  
+                console.log("aux ="+aux["sent"]);              
+                return aux;
+            })
+            .catch(this.handleError);
     }
    
 }

@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { RecipeSearchService } from './recipe-search.service';
 import { ShoppingListService } from './shopping-list.service';
 import { ScrapperSearchService } from './scrapper-search.service';
+import { PlanningsService } from './plannings.service';
 import { MaterialModule } from "@angular/material";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecipeSearchComponent } from './recipe-search.component';
@@ -32,7 +33,7 @@ import { WeekRecipesDetail } from './week-recipes-detail';
   entryComponents: [
     WeekRecipesDetail
   ],
-  providers: [RecipeSearchService, ShoppingListService, ScrapperSearchService],
+  providers: [RecipeSearchService, ShoppingListService, ScrapperSearchService, PlanningsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,14 @@
+<button class="recipes" (click)="requestShoppingList()">Obtener lista de ingredientes</button>
+<div>
+    <select id="mapping" #mapping>
+        <option value="mercadona hacendado">Marca blanca</option>
+        <option value="mercadona by dani">Otras marcas</option>
+    </select>
+    <button (click)="requestMappings(mapping.value)">Obtener mappings</button>
+</div>
+<button class="recipes" (click)="createMercadonaShoppingList()">Hacer lista de la compra en mercadona</button>
 <h1>{{ title }}</h1>
 <week-recipes-planner #planner></week-recipes-planner>
 <recipe-search (recipeSelected)="addRecipeToSelectedDay($event)"></recipe-search>
-<button class="recipes" (click)="requestShoppingList()">Obtener lista de ingredientes</button>
 <shopping-list #shoppingList></shopping-list>
+

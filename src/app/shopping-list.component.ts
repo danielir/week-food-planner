@@ -17,7 +17,6 @@ export class ShoppingListComponent implements OnInit {
 
   private shoppingListItems: ShoppingListItem[] = []; 
   private unmappedIngredients: ShoppingListItem[] = [];
-  private title:string = "Hola";
   private mappingsRequested: boolean = false;
   private ingredientOfProductSearch: string;
   private termOfProductSearch: string;
@@ -33,23 +32,23 @@ export class ShoppingListComponent implements OnInit {
     this.shoppingListItems = [];
     this.unmappedIngredients = [];
     this.shoppingListService.getIngredientsOfWeekRecipes(recipes).then((res) => {for (let ing of res) { 
-      this.shoppingListItems.push({'ingredient':ing, 'product': {'desc':''}});
-      this.unmappedIngredients.push({'ingredient':ing, 'product': {'desc':''}});
+      this.shoppingListItems.push({'ingredient':ing, 'product': {'productName':'','quantity':0}});
+      this.unmappedIngredients.push({'ingredient':ing, 'product': {'productName':'','quantity':0}});
     }
   });
 
   }
 
-  requestMappings() {
+  requestMappings(mappingName:string) {
     for (let shoppingListItem of this.shoppingListItems) {
       console.log(shoppingListItem.ingredient);
-      this.requestProductForIngredient(shoppingListItem);
+      this.requestProductForIngredient(mappingName,shoppingListItem);
     }    
   }
 
-  requestProductForIngredient(shoppingListItem: ShoppingListItem) {
-    this.shoppingListService.requestProductForIngredient(shoppingListItem.ingredient).then(response => {
-      shoppingListItem.product = {desc: response};
+  requestProductForIngredient(mappingName: string, shoppingListItem: ShoppingListItem) {
+    this.shoppingListService.requestProductForIngredient(mappingName, shoppingListItem.ingredient).then(response => {
+      shoppingListItem.product = {productName: response, quantity: 1};
       this.removeFromUnmappedByIngredient(shoppingListItem.ingredient.item);
       this.mappingsRequested = true;
     });    
@@ -83,7 +82,7 @@ export class ShoppingListComponent implements OnInit {
     console.log("asigna " + product + " a " + this.ingredientOfProductSearch);
     for (let i of this.shoppingListItems) {
       if (i.ingredient.item == this.ingredientOfProductSearch) {
-        i.product.desc = product;
+        i.product.productName = product;
         break;
       }
     }
@@ -96,7 +95,29 @@ export class ShoppingListComponent implements OnInit {
 
   unassignProduct(item: ShoppingListItem) {
     this.unmappedIngredients.push(item);    
-    item.product.desc = '';
+    item.product.productName = '';
   }
   
+  createShoppingListInMercadona():void {
+    let products:Product[] = [];
+    for (let item of this.shoppingListItems) {
+      products.push(item.product);
+    }
+    this.shoppingListService.createShoppingCart(products).then(result => {
+      if (result["sent"]==result["added"]) {
+        console.log("todo ha ido estupendamente")
+      }
+      else {
+        console.log("no se ha podido resolver: "+result["unresolvedItems"]);
+      }
+    });        
+  }
+
+  removeShoppingListItem(item:ShoppingListItem) {
+    let removalIndex = this.shoppingListItems.indexOf(item);
+    if (removalIndex != -1) {
+      this.shoppingListItems.splice(removalIndex, 1)
+    }
+    
+  }
 }

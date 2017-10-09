@@ -25,6 +25,8 @@ export class RecipeSearchService {
         
         // mock
         //return Promise.resolve(RECIPES.filter(r => r.name.toLowerCase().indexOf(searchTerm.toLowerCase())>=0));
-    }           
+    }
+    
+    
    
 }

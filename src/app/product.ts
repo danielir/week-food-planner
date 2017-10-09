@@ -1,3 +1,4 @@
 export class Product {
-    desc: string;    
+    productName: string;
+    quantity: number;    
 }
