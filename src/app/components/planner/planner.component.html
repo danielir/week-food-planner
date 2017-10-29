@@ -1,0 +1,47 @@
+<br>
+<div class="row">
+  <div class="col">
+  <a role="button" class="btn btn-default" (click)="openSettings()">Settings</a>
+  <a role="button" class="btn btn-default" (click)="openStoreDialog()">store week</a>
+  <app-week-loader (loadRequested)="loadWeek($event)"></app-week-loader>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col"><h3>Planifica tu semana</h3></div>  
+</div>
+<div class="row">
+    <div class="col"><h4>{{weekName}}</h4></div>  
+</div>  
+
+
+<div class="row">
+<div class="col">
+  <div class="card" style="width: 20rem;">  
+  <day  
+  [recipes]="weekRecipes[i]" 
+  [title]="weekDays[i]"
+  (recipeMoved)="moveRecipe($event, originDayIndex = i) "
+  (recipeRemoved)="removeRecipe($event, dayIndex = i)"
+  (recipeChangedServings)="updateRecipes()" 
+  *ngFor="let day of weekDays; let i = index">
+  </day>  
+  </div>
+</div>
+</div>
+
+
+
+<!--<div class="row" *ngFor="let day of weekDays; let i = index">  
+  <div class="col dia">
+  <day  
+  [recipes]="weekRecipes[i]" 
+  [title]="weekDays[i]"
+  (recipeMoved)="moveRecipe($event, originDayIndex = i) "
+  (recipeRemoved)="removeRecipe($event, dayIndex = i)"
+  (recipeChangedServings)="updateRecipes()">
+  </day>
+  </div>
+  <div class="col-9"></div>
+</div>
+-->

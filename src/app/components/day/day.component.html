@@ -1,0 +1,8 @@
+<div class="card-body">
+  <md-checkbox id="{{title}}" [(ngModel)]="isActive"><h4 class="daytitle" role="button">{{title}}</h4></md-checkbox>
+  <ul>
+    <li *ngFor="let recipe of recipes; let i=index" (click)="openDialog(recipe,i)">
+      <span role="button">{{recipe.name}} ({{recipe.servings}}p)</span>
+    </li>
+  </ul>
+</div>

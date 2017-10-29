@@ -1,0 +1,14 @@
+<h2>Configure Settings</h2>
+<span>Default servings:</span><input type="number" [(ngModel)]="servings">
+<br>
+<div>
+  <label for="mapping">Mapping</label>  
+  <select [(ngModel)]="mapping">
+    <option value="mercadona hacendado">Marca blanca</option>
+    <option value="mercadona by dani">Otras marcas</option>
+  </select>
+  
+</div>
+<button (click)="cancel()">Cancel</button>
+<button (click)="accept()">Accept</button>
+

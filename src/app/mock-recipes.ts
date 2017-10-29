@@ -1,4 +1,4 @@
-import { Recipe } from './recipe';
+import { Recipe } from './models/recipe';
 
 export const RECIPES: Recipe[] = [
     { id: '1', name: 'Pimientos rellenos (bajoques farcides)', servings: 2},

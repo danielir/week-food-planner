@@ -1,0 +1,10 @@
+#week {
+    min-width: 0;
+    width: auto;
+    display: inline;
+    height: auto;
+}
+
+#dia {
+    width: 300px;
+}

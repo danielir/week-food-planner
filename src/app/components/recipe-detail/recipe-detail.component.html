@@ -1,0 +1,20 @@
+<div>
+    <button md-icon-button (click)="onRemove()">
+      <md-icon class="md-36" aria-label="Example icon-button with a heart icon">delete</md-icon>
+    </button>
+    {{data.recipe.name}} ({{data.recipe.servings}})
+  </div>
+  
+<md-select placeholder="Mover a" #select (change)="onMoved(select.selected.value)">  
+  <md-option *ngFor="let day of data.weekDays; let i = index" [value]="i">{{day}}</md-option>
+</md-select>    
+<md-form-field>
+  <input mdInput placeholder="Servings" type="number" [(ngModel)]="data.recipe.servings" min="1" max="99" required="required">
+</md-form-field>
+<br>
+<button (click)="cancel()">Cancel</button>
+<button (click)="accept()">Accept</button>
+
+
+
+

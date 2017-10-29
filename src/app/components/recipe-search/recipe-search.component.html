@@ -1,0 +1,13 @@
+<div>
+  <md-form-field class="example-full-width">
+    <input mdInput #searchTerm placeholder="comida" (keyup)="search(searchTerm.value)">
+  </md-form-field>
+  <button md-button>Añadir comida a la semana</button>
+  <!--
+  <p>Buscador:</p>
+  <input type="text" #searchTerm2 placeholder="comida" (keyup)="search(searchTerm2.value)">-->
+  <!--<div *ngFor="let recipe of recipes | async" (click)="selectRecipe(recipe);searchTerm.value=''">{{recipe.name}}</div>-->
+  <div *ngFor="let recipe of recipes | async" (click)="selectRecipe(recipe);searchTerm.value=recipe.name">{{recipe.name}}</div>
+  
+</div>
+
