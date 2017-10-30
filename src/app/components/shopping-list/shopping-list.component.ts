@@ -7,7 +7,7 @@ import { ShoppingListItem } from '../../models/shopping-list-item';
 import { Ingredient } from '../../models/ingredient';
 import { Product } from '../../models/product';
 import { RecipeService } from '../../services/recipe.service'
-import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 
 
 @Component({
@@ -24,7 +24,7 @@ export class ShoppingListComponent implements OnInit {
     private shoppingListService: ShoppingListService, 
     private scrapperSearchService: ScrapperSearchService, 
     private recipeService:RecipeService,
-    public snackBar: MdSnackBar ) { }      
+    public snackBar: MatSnackBar ) { }      
   
   ngOnInit(): void {
     this.ingredients = this.recipeService.getWeekRecipesIngredients();

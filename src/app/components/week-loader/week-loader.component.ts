@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { WeekLoaderDialogComponent } from './week-loader-dialog/week-loader-dialog.component';
 
 @Component({
@@ -11,7 +11,7 @@ export class WeekLoaderComponent implements OnInit {
 
   @Output() loadRequested = new EventEmitter<any>();
   
-  constructor(public dialog: MdDialog) { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
   }

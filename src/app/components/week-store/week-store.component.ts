@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
-import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-week-store',
@@ -13,8 +13,8 @@ export class WeekStoreComponent implements OnInit {
   private weekName : string = '';
 
   constructor(
-    public dialogRef: MdDialogRef<WeekStoreComponent>,
-    @Inject(MD_DIALOG_DATA) public data: any) { }
+    public dialogRef: MatDialogRef<WeekStoreComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
 
   ngOnInit() {

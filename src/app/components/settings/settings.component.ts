@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SettingsService } from '../../services/settings.service'
-import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-settings',
@@ -9,7 +9,7 @@ import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 })
 export class SettingsComponent implements OnInit {
 
-  constructor(public settings:SettingsService, public dialogRef: MdDialogRef<SettingsComponent>) { }
+  constructor(public settings:SettingsService, public dialogRef: MatDialogRef<SettingsComponent>) { }
 
   private servings:number;
   private mapping:string;

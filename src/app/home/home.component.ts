@@ -3,7 +3,7 @@ import { Recipe } from '../models/recipe';
 import { RecipeSearchComponent } from '../components/recipe-search/recipe-search.component'
 import { ShoppingListComponent } from '../components/shopping-list/shopping-list.component';
 import { SettingsService } from '../services/settings.service';
-import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +15,7 @@ export class HomeComponent {
     @ViewChild('planner') weekPlanner;
     @ViewChild('shoppingList') shoppingListComponent;
   
-    constructor(public settings:SettingsService, public snackBar: MdSnackBar) { }
+    constructor(public settings:SettingsService, public snackBar: MatSnackBar) { }
 
     
     addRecipe(recipe:Recipe) {

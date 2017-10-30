@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { RecipeDetailComponent } from '../recipe-detail/recipe-detail.component'
 import { Recipe } from '../../models/recipe'
 import * as config from '../../models/config' 
@@ -20,7 +20,7 @@ export class DayComponent implements OnInit {
   @Output() recipeMoved=new EventEmitter<any>();
   @Output() recipeChangedServings=new EventEmitter<any>();
 
-  constructor(public dialog: MdDialog) { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {    
   }

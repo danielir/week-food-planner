@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, EventEmitter, Output } from '@angular/core';
-import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { PlanningsService } from '../../../services/plannings.service' 
 
 @Component({
@@ -16,8 +16,8 @@ export class WeekLoaderDialogComponent implements OnInit {
 
   constructor(
     public planningService: PlanningsService,
-    public dialogRef: MdDialogRef<WeekLoaderDialogComponent>,
-    @Inject(MD_DIALOG_DATA) public data: any) { }
+    public dialogRef: MatDialogRef<WeekLoaderDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
 
   ngOnInit() {

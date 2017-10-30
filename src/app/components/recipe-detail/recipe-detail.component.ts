@@ -1,5 +1,5 @@
 import { Component, Inject, Output, EventEmitter } from '@angular/core';
-import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Recipe } from '../../models/recipe'
 
 @Component({
@@ -18,8 +18,8 @@ export class RecipeDetailComponent {
   changedServings=new EventEmitter<any>();
   
   constructor(
-    public dialogRef: MdDialogRef<RecipeDetailComponent>,
-    @Inject(MD_DIALOG_DATA) public data: any) { }
+    public dialogRef: MatDialogRef<RecipeDetailComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   cancel(): void {
     this.dialogRef.close();

@@ -10,7 +10,6 @@ import { ScrapperSearchService } from './services/scrapper-search.service';
 import { PlanningsService } from './services/plannings.service';
 import { SettingsService } from './services/settings.service';
 import { RecipeService } from './services/recipe.service';
-import { MaterialModule } from "@angular/material";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecipeSearchComponent } from './components/recipe-search/recipe-search.component';
 import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
@@ -24,7 +23,7 @@ import { WeekStoreComponent } from './components/week-store/week-store.component
 import { SettingsComponent } from './components/settings/settings.component';
 import { HomeComponent } from './home/home.component';
 
-
+import { MatInputModule, MatDialogModule, MatFormFieldModule, MatSelectModule, MatOptionModule, MatIconModule, MatCheckboxModule, MatSnackBarModule } from '@angular/material'
 
 
 @NgModule({
@@ -43,8 +42,9 @@ import { HomeComponent } from './home/home.component';
     HttpModule,
     BrowserAnimationsModule,    
     routing,
-    FormsModule ,
-    MaterialModule    
+    FormsModule,
+    MatFormFieldModule, MatSelectModule, MatOptionModule, MatIconModule, MatCheckboxModule, MatSnackBarModule, MatDialogModule, MatInputModule
+    
   ],
   entryComponents: [
     RecipeDetailComponent, WeekLoaderDialogComponent, WeekStoreComponent, SettingsComponent

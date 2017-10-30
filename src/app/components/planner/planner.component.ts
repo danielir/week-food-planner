@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChildren, QueryList } from '@angular/core';
-import { MdTabsModule } from '@angular/material';
+import { MatTab } from '@angular/material';
 import { Recipe } from '../../models/recipe';
 import { RecipeSearchComponent } from '../recipe-search/recipe-search.component'
 import { ShoppingListComponent } from '../shopping-list/shopping-list.component';
@@ -9,7 +9,7 @@ import { DayComponent } from '../day/day.component'
 import * as config from '../../models/config' 
 import { WeekStoreComponent } from '../week-store/week-store.component'
 import { SettingsComponent } from '../settings/settings.component'
-import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { RecipeService } from '../../services/recipe.service';
 import { SettingsService } from '../../services/settings.service';
 
@@ -28,7 +28,7 @@ export class PlannerComponent implements OnInit {
   
   constructor(
     private planningService: PlanningsService, 
-    public dialog: MdDialog, 
+    public dialog: MatDialog, 
     private recipeService: RecipeService,
     private settings: SettingsService) {}
 
