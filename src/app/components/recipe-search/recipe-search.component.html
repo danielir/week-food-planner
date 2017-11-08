@@ -1,13 +1,12 @@
 <div>
-  <mat-form-field class="example-full-width">
-    <input matInput #searchTerm placeholder="comida" (keyup)="search(searchTerm.value)">
-  </mat-form-field>
-  <button md-button>Añadir comida a la semana</button>
+  <input type="text" id="search_form_input" #searchTerm placeholder="Introduce un desayuno, comida o cena..." (keyup)="search(searchTerm.value)" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;">
   <!--
   <p>Buscador:</p>
   <input type="text" #searchTerm2 placeholder="comida" (keyup)="search(searchTerm2.value)">-->
   <!--<div *ngFor="let recipe of recipes | async" (click)="selectRecipe(recipe);searchTerm.value=''">{{recipe.name}}</div>-->
-  <div *ngFor="let recipe of recipes | async" (click)="selectRecipe(recipe);searchTerm.value=recipe.name">{{recipe.name}}</div>
+  
+  <div class="suggestions" *ngFor="let recipe of recipes | async" (click)="selectRecipe(recipe);searchTerm.value=recipe.name">{{recipe.name}}</div>
+  
   
 </div>
 

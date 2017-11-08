@@ -12,4 +12,8 @@ li {
     text-align: left;    
 }
 
+.card-body {
+    float: left;
+}
+
 

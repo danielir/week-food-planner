@@ -1,0 +1,33 @@
+#search_form_input {
+    width: 100%;
+    border: 2px solid #e2e2e2;
+    background-color: transparent;
+    line-height: 2;
+    padding: 0 20px;
+    border-radius: 5px;
+    font-family: 'helvetica neue', arial, sans-serif;
+    font-weight: 200;
+    color: #000000;
+    font-size: 20px;
+    -webkit-appearance: none;
+    -webkit-transition: .25s all;
+    transition: .25s all;
+}
+
+#search_form_input:focus {
+    outline: none;
+    border: 2px solid orange;
+}
+
+div.suggestions {
+    width: 100%;
+    padding: 0 20px;
+    font-family: 'helvetica neue', arial, sans-serif;
+    font-size: 20px;
+}
+
+div.suggestions:hover {
+    background-color: #eeeeee;
+    text-decoration-color: red;
+    cursor: pointer;
+}

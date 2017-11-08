@@ -20,6 +20,7 @@ export class RecipeSearchService {
         if (term != "") {
             url += '?search=' + term;
         }
+
         return this.http.get(url)
             .map(response => response.json() as Recipe[]);     
         
