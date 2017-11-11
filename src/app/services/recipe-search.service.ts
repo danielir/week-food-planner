@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 
 import { Recipe } from '../models/recipe';
 import { RECIPES } from '../mock-recipes';
+import * as Constants from '../components/Constants'
 
 @Injectable()
 export class RecipeSearchService {
@@ -22,7 +23,7 @@ export class RecipeSearchService {
         }
 
         return this.http.get(url)
-            .map(response => response.json() as Recipe[]);     
+            .map(response => response.json() as Recipe[]).map(data => data.slice(0,Constants.MAX_RECIPE_SUGGESTIONS));
         
         // mock
         //return Promise.resolve(RECIPES.filter(r => r.name.toLowerCase().indexOf(searchTerm.toLowerCase())>=0));

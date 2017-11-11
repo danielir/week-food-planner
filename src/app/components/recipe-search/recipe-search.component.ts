@@ -26,8 +26,9 @@ export class RecipeSearchComponent implements OnInit {
   @Output()
   recipeSelected = new EventEmitter<Recipe>();
 
+  
   recipes: Observable<Recipe[]>;
-  private searchTerms = new Subject<string>();
+  private searchTerms = new Subject<string>();  
     
   ngOnInit(): void {
     this.recipes = this.searchTerms
@@ -50,7 +51,8 @@ export class RecipeSearchComponent implements OnInit {
   }
 
   selectRecipe(recipe:Recipe) {    
-    this.recipeSelected.emit(recipe);
+    this.recipeSelected.emit(recipe);        
+
   }
 
     
