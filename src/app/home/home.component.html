@@ -1,3 +1,3 @@
-<recipe-search (recipeSelected)="addRecipe($event)"></recipe-search>
+<recipe-search #recipeSearch (recipeSelected)="recipeSelected($event)" (changeActivedDays)="changeActivedDays($event)"></recipe-search>
 <app-planner #planner></app-planner>
 <hr>

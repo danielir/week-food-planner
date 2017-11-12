@@ -13,15 +13,44 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 export class HomeComponent {
   
     @ViewChild('planner') weekPlanner;
-    @ViewChild('shoppingList') shoppingListComponent;
+    @ViewChild('recipeSearch') recipeSearch;
+    //@ViewChild('shoppingList') shoppingListComponent;
+
   
     constructor(public settings:SettingsService, public snackBar: MatSnackBar) { }
 
     
-    addRecipe(recipe:Recipe) {
-      this.weekPlanner.addRecipe(recipe);
+    recipeSelected(recipe:Recipe) {
+      console.log('when recipeSelected should ask for week recipes')
+      let weekRecipes:Recipe[][] = this.weekPlanner.getWeekRecipes()
+      let recipeInDays:boolean[] = [];
+      console.log(weekRecipes.length)
+      for (let dayRecipes of weekRecipes) {      
+        let found = false
+        for (let r of dayRecipes) {
+          if (recipe.name == r.name) {
+            found = true;
+            break;
+          }          
+        }
+        recipeInDays.push(found)
+      }
+      console.log(recipeInDays) 
+      this.recipeSearch.setDayActive(recipeInDays)     
     }
-  
+
+    changeActivedDays(info:any) {
+      if (info.dayActive[info.index]) {
+        this.weekPlanner.addRecipeToDay(info.index, info.recipe)
+      }
+      else {
+        this.weekPlanner.removeRecipeFromDay(info.index, info.recipe)
+      }
+      
+    }
+
+    
+    /*
     requestShoppingList() {
       let recipes : Recipe[][] = this.weekPlanner.getWeekRecipes();
       let noRecipe = true;
@@ -57,6 +86,7 @@ export class HomeComponent {
     createMercadonaShoppingList() {
       this.shoppingListComponent.createShoppingListInMercadona();
     }
+    */
     
   }
   

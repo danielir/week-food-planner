@@ -46,7 +46,20 @@ export class PlannerComponent implements OnInit {
     }    
   }
 
+  addRecipeToDay(dayIndex:number, recipe:Recipe) {
+    console.log("somebody wants to add "+recipe.name+" to "+dayIndex)
+    this.recipeService.addRecipeToSelectedDay(recipe, dayIndex);
+    this.weekRecipes = this.recipeService.getWeekRecipes();
+  }
+
+  removeRecipeFromDay(dayIndex:number, recipe:Recipe) {
+    console.log("somebody wants to remove "+recipe.name+" from "+dayIndex)
+    this.recipeService.removeRecipeFromSelectedDay(recipe, dayIndex);
+    this.weekRecipes = this.recipeService.getWeekRecipes();
+  }
+  
   addRecipe(recipe:Recipe) {        
+    console.log("adding")
     let active:boolean[] = this.days.map(d => d.isActive);
     active.forEach( (item,index) => { if (item) this.recipeService.addRecipeToSelectedDay(recipe,index); } );
     this.weekRecipes = this.recipeService.getWeekRecipes();

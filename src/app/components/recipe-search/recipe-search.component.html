@@ -1,12 +1,11 @@
 <div>
   <input type="text" id="search_form_input" #searchTerm placeholder="Introduce un desayuno, comida o cena..." (keyup)="search(searchTerm.value)" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;">
-  <!--
-  <p>Buscador:</p>
-  <input type="text" #searchTerm2 placeholder="comida" (keyup)="search(searchTerm2.value)">-->
-  <!--<div *ngFor="let recipe of recipes | async" (click)="selectRecipe(recipe);searchTerm.value=''">{{recipe.name}}</div>-->
-  
-  <div class="suggestions" *ngFor="let recipe of recipes | async" (click)="selectRecipe(recipe);searchTerm.value=recipe.name">{{recipe.name}}</div>
-  
+  <div #suggestions>
+    <div class="suggestions" *ngFor="let recipe of recipes | async" (click)="selectRecipe(recipe);searchTerm.value=recipe.name">{{recipe.name}}</div>  
+  </div>
+  <div #actions class="actions">
+    <span *ngFor="let day of weekDays; let i = index" role="button" [class.selected]="dayActive[i]" (click)="toggleDayActive(i)">&nbsp;{{day}}</span>    
+  </div>
   
 </div>
 

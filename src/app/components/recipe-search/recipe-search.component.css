@@ -7,7 +7,7 @@
     border-radius: 5px;
     font-family: 'helvetica neue', arial, sans-serif;
     font-weight: 200;
-    color: #000000;
+    color: #000000;    
     font-size: 20px;
     -webkit-appearance: none;
     -webkit-transition: .25s all;
@@ -19,7 +19,7 @@
     border: 2px solid orange;
 }
 
-div.suggestions {
+div.suggestions,div.actions {
     width: 100%;
     padding: 0 20px;
     font-family: 'helvetica neue', arial, sans-serif;
@@ -30,4 +30,9 @@ div.suggestions:hover {
     background-color: #eeeeee;
     text-decoration-color: red;
     cursor: pointer;
+}
+
+.selected {
+    color: blueviolet;
+    font-size: 20px;    
 }

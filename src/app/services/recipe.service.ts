@@ -53,6 +53,19 @@ export class RecipeService {
     recipes[selectedDay].push(newRecipe);    
     this.setWeekRecipes(recipes);
   }
+  
+  public removeRecipeFromSelectedDay(recipe:Recipe, selectedDay:number) {
+    
+    let recipeIndex = 0;
+    // while hecho para eliminar muchas recetas con el mismo nombre en un mismo dia
+    while (recipeIndex != -1) {
+      let recipes: Recipe[][] = this.getWeekRecipes();
+      recipeIndex = recipes[selectedDay].findIndex((elem) => elem.name == recipe.name)    
+      recipes[selectedDay].splice(recipeIndex, 1);
+      this.setWeekRecipes(recipes);
+    }
+    
+  }
 
   public moveRecipe(event: any, originDayIndex: number) {
     let recipe = event.recipe;
